@@ -3,7 +3,7 @@ pragma solidity ^0.4.17;
 contract Inbox {
     string public message;
 
-    constructor(string initialMessage) public {
+    constructor (string initialMessage) public {
         message = initialMessage;
     }
 
@@ -11,7 +11,10 @@ contract Inbox {
         message = newMessage;
     }
 
+/* [Removed] Redundant to line 4 variable
+
     function getMessage() public view returns (string) {
         return message;
     }
+*/
 }
