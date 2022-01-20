@@ -3,6 +3,7 @@ const ganache = require('ganache-cli');
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
 
+/*
 class Car {
     park() {
         return 'stopped';
@@ -28,4 +29,30 @@ describe('Car', () => {
     });
 });
 
-// add "test": "mocha" manually to package.json
+add "test": "mocha" manually to package.json
+*/
+
+beforeEach(() => {
+    // Get a list of all accounts
+    web3.eth.getAccounts()
+        .then(fetchedAccounts => {
+            console.log(fetchedAccounts);
+        });
+
+    // Use one of those accounts to deploy a contract
+
+    
+    // the contract
+});
+
+describe('Inbox', () => {
+    it('deploys a contract', () => {
+
+    });
+})
+
+
+
+
+
+
