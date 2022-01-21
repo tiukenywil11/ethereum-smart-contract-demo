@@ -32,12 +32,18 @@ describe('Car', () => {
 add "test": "mocha" manually to package.json
 */
 
-beforeEach(() => {
+let accounts;
+
+beforeEach(async () => {
     // Get a list of all accounts
-    web3.eth.getAccounts()
+    
+    /*web3.eth.getAccounts()
         .then(fetchedAccounts => {
             console.log(fetchedAccounts);
         });
+    */
+
+    accounts = await web3.eth.getAccounts();
 
     // Use one of those accounts to deploy a contract
 
@@ -47,7 +53,7 @@ beforeEach(() => {
 
 describe('Inbox', () => {
     it('deploys a contract', () => {
-
+        console.log(accounts);
     });
 })
 
