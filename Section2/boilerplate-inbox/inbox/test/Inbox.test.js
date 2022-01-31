@@ -9,6 +9,7 @@ const { interface, bytecode } = require('../compile');
 let accounts;
 let inbox;
 const INITIAL_STRING = 'Hi there!';
+const CHANGE_STRING = 'Bye!';
 
 beforeEach(async () => {
     // Get a list of all accounts
@@ -38,6 +39,12 @@ describe('Inbox', () => {
     it('has a default message', async () => {
         const message = await inbox.methods.message().call();
         assert.equal(message, INITIAL_STRING);
+    });
+
+    it('can change the message', async () => {
+        await inbox.methods.setMessage('Bye!').send({ from: accounts[0] });
+        const message = await inbox.methods.message().call();
+        assert.equal(message, CHANGE_STRING)
     });
 });
 
