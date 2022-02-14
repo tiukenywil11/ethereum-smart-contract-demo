@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.4.26;
+
 contract ArrayTest {
     
     // This is a Solidity snippet testing how arrays work
@@ -6,7 +10,7 @@ contract ArrayTest {
     // Does not return the whole array when deployed, needs to input index when getting called
     uint[] public myArray;
 
-    constructor() {
+    constructor () {
         myArray.push(1);
         myArray.push(10);
         myArray.push(30);
