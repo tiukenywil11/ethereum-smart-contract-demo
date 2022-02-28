@@ -9,8 +9,8 @@ These can be found within each Section's folder
 ### Section 1
 Contains an Inbox Solidity code snippet that shows a basic constructor function
 
-## Section 2
+### Section 2
 Contains an Inbox Solidity code snippet with Javascript test automation, and deploy to Ethereum Rinkeby network functions.
 
-## Section 3 [In Progress]
+### Section 3 [In Progress]
 Developing a Lottery smart contract demo
