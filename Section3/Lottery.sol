@@ -15,4 +15,12 @@ contract Lottery {
         require(msg.value > .01 ether);
 		players.push(msg.sender);
 	}
+
+    // helper function that creates a random number
+    function random() private view returns (uint) {
+        // sha3() & keccak256() are the same hash function
+        // takes block difficult, current time, and list of players as parameters
+        // parse the hash to uint, for the return type
+        return uint(keccak256(block.difficulty, now, players));
+    }
 }
