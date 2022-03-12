@@ -23,4 +23,10 @@ contract Lottery {
         // parse the hash to uint, for the return type
         return uint(keccak256(block.difficulty, now, players));
     }
+
+    function pickWinner() public {
+        // Use the random function to create a very large number, then use modulo to limit the number to the number of players
+        uint index = random() % players.length;
+    }
+
 }
