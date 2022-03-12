@@ -29,6 +29,8 @@ contract Lottery {
         uint index = random() % players.length;
         // Use transfer(this.balance), parameter stating that all the balance in this contract will be transferred, to the address of player chosen. 
         players[index].transfer(this.balance);
+        // Re-initialize a new dynamic array to reset the contract, and also have an initial size of 0
+        players = new address[](0);
     }
 
 }
