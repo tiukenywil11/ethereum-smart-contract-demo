@@ -27,6 +27,8 @@ contract Lottery {
     function pickWinner() public {
         // Use the random function to create a very large number, then use modulo to limit the number to the number of players
         uint index = random() % players.length;
+        // Use transfer(this.balance), parameter stating that all the balance in this contract will be transferred, to the address of player chosen. 
+        players[index].transfer(this.balance);
     }
 
 }
