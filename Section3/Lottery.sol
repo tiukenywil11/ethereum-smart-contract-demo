@@ -24,15 +24,34 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, players));
     }
 
-    function pickWinner() public {
-        // require the creator of the contract to be the only one to trigger pickWinner function
+    function pickWinner() public restricted{
+        /*
+        -- require the creator of the contract to be the only one to trigger pickWinner function
+        -- replaced by function modifier 'restricted'
         require(msg.sender == manager);
+        */
         // Use the random function to create a very large number, then use modulo to limit the number to the number of players
         uint index = random() % players.length;
         // Use transfer(this.balance), parameter stating that all the balance in this contract will be transferred, to the address of player chosen. 
         players[index].transfer(this.balance);
         // Re-initialize a new dynamic array to reset the contract, and also have an initial size of 0
         players = new address[](0);
+    }
+
+    /*
+    -- sample function using 'restricted' function modifier as well.
+    function returnEntries() public restricted{
+
+    }
+    */
+
+    // modifiers are used to prevent 'don' repeat yourself' problem
+    // Create a modifier named restricted, that can be called on a function
+    modifier restricted() {
+        // require the creator of the contract to be the only one to trigger pickWinner function
+        require(msg.sender == manager);
+        // the underscore will be replaced with the code blocks inside the function it is called upon
+        _;
     }
 
 }
