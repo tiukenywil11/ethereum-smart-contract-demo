@@ -54,4 +54,9 @@ contract Lottery {
         _;
     }
 
+    // view modifier only returns read-only data.
+    function getPlayers() public view returns(address[]) {
+        return players;
+    }
+
 }
