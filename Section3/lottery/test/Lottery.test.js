@@ -24,3 +24,12 @@ beforeEach( async () => {
 
 });
 
+// describe categorizes the tests as part of 'Lottery Contract'
+describe('Lottery Contract', () => {
+    
+    // checks if contracts gets deployed
+    it('deploys a contract', () => {
+        assert.ok(lottery.options.address);
+    });
+});
+
