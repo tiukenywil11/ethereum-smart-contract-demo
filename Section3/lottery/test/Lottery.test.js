@@ -31,5 +31,29 @@ describe('Lottery Contract', () => {
     it('deploys a contract', () => {
         assert.ok(lottery.options.address);
     });
+
+    // checks if an account can be entered
+    it('allows one account to enter', async () => {
+        // calls the method enter in Lottery.sol
+        // chain with send, with the parameters (from: sender wallet address, value: ether value that will be sent to the contract).
+        await lottery.methods.enter().send({
+            from: accounts[0],
+            value: web3.utils.toWei('0.02', 'ether')
+        });
+
+        // get the list of players in the accounts array, to check if account has been created
+        // call function getPlayers for the list of arrays
+        const players = await lottery.methods.getPlayers().call({
+            from: accounts[0]
+        });
+
+        // assert if index 0 accounts (variable in test script) is the same as index 0 players (variable inside the contract)
+        assert.equal(accounts[0], players[0]);
+
+        // assert if the array was initialized with only 1 value
+        assert.equal(1, players.length);
+
+    });
+
 });
 
