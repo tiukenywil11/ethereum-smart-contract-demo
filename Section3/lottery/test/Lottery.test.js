@@ -93,5 +93,27 @@ describe('Lottery Contract', () => {
         assert.equal(3, players.length);
     });
 
+    // checks if the minimum amount of ether is provided to use the enter function
+    it('requires a minimum amount of ether to enter', async () => {
+        
+        // use a try catch statement to return an error
+        try {
+            // calls method enter at Lottery.sol
+            // uses the first account in ganache test environment
+            // passing value 0 ether
+            await lottery.methods.enter().send({
+                from: accounts[0],
+                value: 0
+            });
+
+            // if the await function above succeeds, add an extra assert to make sure that the test fails
+            assert(false);
+
+        } catch (err) {
+            // assert checks for truthiness, while assert.ok checks for existence
+            // assert() assures us that a value is passed inside the function
+            assert(err);
+        }
+    });
 });
 
