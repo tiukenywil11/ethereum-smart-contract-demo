@@ -115,5 +115,29 @@ describe('Lottery Contract', () => {
             assert(err);
         }
     });
+
+    // tests modifier where only the contract creator can call a function
+    it('only manager can call pickWinner', async() => {
+
+        // use a try catch statement to return an error
+        try{
+            // calls methods pickWinner from Lottery.sol
+            // uses the second account, which is not the manager
+            await lottery.methods.enter().send({
+                from: accounts[1]
+            });
+
+            // if the await function above succeeds, add an extra assert to make sure that the test fails
+            assert(false);
+
+        } catch (err) {
+        
+            // assert() assures us that a value is passed inside the function
+            assert(err);
+        }
+
+    });
+
+
 });
 
