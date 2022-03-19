@@ -172,11 +172,21 @@ describe('Lottery Contract', () => {
             // asserts the the difference is less than two ether (because of the gas fees), but close to two ether
             assert(difference > web3.utils.toWei('1.8', 'ether')) 
 
+            // assert that player arrays gets emptied out
+
+            // get the list of players in the accounts array, to check if account is empty after calling pickWinnner
+            // call function getPlayers for the list of arrays
+            const players = await lottery.methods.getPlayers().call({
+                from: accounts[0]
+            });
+
+            //  assert if the array was has 0 values after the winners are picked
+            assert.equal(0, players.length);
+
     });
 
     /*
     homework: asserts that are not in the course
-    -- assert that player arrays gets emptied out
     -- assert that lottery amount goes back to zero
     */
 
