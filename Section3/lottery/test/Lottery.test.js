@@ -140,7 +140,7 @@ describe('Lottery Contract', () => {
 
     // checks if the contract gives the reward to the winner, and resets players count
     // will check by only entering one player, eliminating the random nature of the program for testing
-    it('sends money to the winner, and resets the players array', async() => {
+    it('sends money to the winner, resets the players array, and contract balance must be zero', async() => {
 
             // calls method enter at Lottery.sol
             // uses the first account in ganache test environment
@@ -172,7 +172,7 @@ describe('Lottery Contract', () => {
             // asserts the the difference is less than two ether (because of the gas fees), but close to two ether
             assert(difference > web3.utils.toWei('1.8', 'ether')) 
 
-            // assert that player arrays gets emptied out
+            // homework 1: assert that player arrays gets emptied out
 
             // get the list of players in the accounts array, to check if account is empty after calling pickWinnner
             // call function getPlayers for the list of arrays
@@ -183,12 +183,16 @@ describe('Lottery Contract', () => {
             //  assert if the array was has 0 values after the winners are picked
             assert.equal(0, players.length);
 
-    });
+            // homework 2: assert that lottery amount goes back to zero
 
-    /*
-    homework: asserts that are not in the course
-    -- assert that lottery amount goes back to zero
-    */
+            // get balance of contract
+            const contractBalance = await lottery.methods.getContractBalance().call({
+                from: accounts[0]
+            });
+
+            //  assert that the contract balance has 0 wei after pickWinner is called
+            assert.equal(0, contractBalance);
+    });
 
 });
 

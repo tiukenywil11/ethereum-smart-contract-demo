@@ -45,7 +45,7 @@ contract Lottery {
     }
     */
 
-    // modifiers are used to prevent 'don' repeat yourself' problem
+    // modifiers are used to prevent 'don't repeat yourself' problem
     // Create a modifier named restricted, that can be called on a function
     modifier restricted() {
         // require the creator of the contract to be the only one to trigger pickWinner function
@@ -55,8 +55,14 @@ contract Lottery {
     }
 
     // view modifier only returns read-only data.
+    // function returns list of players in the array
     function getPlayers() public view returns(address[]) {
         return players;
+    }
+
+    // function returns the balance in the contract 
+    function getContractBalance() public view returns(uint256) {
+        return this.balance;
     }
 
 }
