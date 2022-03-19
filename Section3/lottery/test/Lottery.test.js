@@ -138,6 +138,47 @@ describe('Lottery Contract', () => {
 
     });
 
+    // checks if the contract gives the reward to the winner, and resets players count
+    // will check by only entering one player, eliminating the random nature of the program for testing
+    it('sends money to the winner, and resets the players array', async() => {
+
+            // calls method enter at Lottery.sol
+            // uses the first account in ganache test environment
+            // passing a value of two quintillion wei, using a web3 utility called toWei putting the parameters two, and ether
+            await lottery.methods.enter().send({
+                from: accounts[0],
+                value: web3.utils.toWei('2', 'ether')
+            });
+
+            // check if the function works, by checking the balance of the first account, before and after using the pickWinner function 
+            
+            // get initial balance of the first account, by using web3 function getBalance
+            // balance by this point would be two ether and gas fees less 
+            const initialBalance = await web3.eth.getBalance(accounts[0]);
+
+            // calls methods pickWinner from Lottery.sol
+            // uses the first account in ganache test environment
+            // this should return the ether to the first account, because it is the only player
+            await lottery.methods.pickWinner().send({ 
+                from: accounts[0] 
+            });
+
+            // get final balance of the first account, by using web3 function getBalance
+            // balance by this point should be the same as before entering with two ether, minus the gas fee
+            const finalBalance = await web3.eth.getBalance(accounts[0]);
+            
+            // get the difference between initial and final balance, to check if the contact was successful
+            const difference = finalBalance - initialBalance;
+            // asserts the the difference is less than two ether (because of the gas fees), but close to two ether
+            assert(difference > web3.utils.toWei('1.8', 'ether')) 
+
+    });
+
+    /*
+    homework: asserts that are not in the course
+    -- assert that player arrays gets emptied out
+    -- assert that lottery amount goes back to zero
+    */
 
 });
 
