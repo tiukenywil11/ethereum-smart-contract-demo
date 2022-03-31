@@ -1,7 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Web3 from './components/config/web3'
 
 function App() {
+
+  const web3GetAccounts = async () => {
+    const web3Accounts = await Web3.eth.getAccounts();
+    console.log(web3Accounts);
+  }
+
+  web3GetAccounts();
+  
   return (
     <div className="App">
       <header className="App-header">
