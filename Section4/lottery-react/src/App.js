@@ -4,7 +4,6 @@ import Dashboard from './components/pages/Dashboard'
 import Form from './components/pages/Form';
 
 function App() {
-  
   return (
     <div>
       <Dashboard/>
