@@ -1,36 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react'
+// import web 3 functions, connected to ethereum
 import Web3 from './components/config/web3'
+// import smart contract local instance
+import lottery from './components/smart-contract/lottery'
 
 function App() {
 
+  const [manager, setManager] = useState('');
+
+  /* temporarily commented out web3GetAccounts function call
   const web3GetAccounts = async () => {
     const web3Accounts = await Web3.eth.getAccounts();
-    /* this is for testing only
     console.log(web3Accounts);
-    */
+    
   }
 
-  /*  temporarily commented out web3GetAccounts function call
   web3GetAccounts(); 
   */
+   
+  useEffect(() => 
+    {
+      const fetchManager = async () => {
+        // lottery manager call does not need an account argument, bevause it makes use of the default metamask account
+        const manager = await lottery.methods.manager().call();
+        // set state to manager
+        setManager(manager);
+      }
+
+      // call function to set async manager
+      fetchManager();
+    },
+    []
+  ) 
   
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Lottery Contract</h2>
+      <p>This contract is managed by {manager}</p>
     </div>
   );
 }

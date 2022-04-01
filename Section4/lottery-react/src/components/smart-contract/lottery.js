@@ -1,7 +1,7 @@
 // lottery.js create a local instance of the smart contract deployed on the blockchain
 
 // import web3 library to interact with metamask wallet
-import web3 from './web3';
+import web3 from '../config/web3';
 
 // smart contract address for lottery contract
 // tranasaction that created this contract: https://rinkeby.etherscan.io/tx/0x524db5af3bb77aa04e73ea77b1331a5d02cc8d49329e57c280a5bfa0d9a0d482
