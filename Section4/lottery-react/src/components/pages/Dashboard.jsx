@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 // import from web3 noode module
-import Web3 from "web3";
+import Web3 from "../config/web3";
 // import smart contract local instance
 import lottery from '../smart-contract/lottery'
 
