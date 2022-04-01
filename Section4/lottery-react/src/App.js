@@ -6,10 +6,10 @@ function App() {
 
   const web3GetAccounts = async () => {
     const web3Accounts = await Web3.eth.getAccounts();
-    console.log(web3Accounts);
+    // console.log(web3Accounts);
   }
 
-  web3GetAccounts();
+  // web3GetAccounts();
   
   return (
     <div className="App">
