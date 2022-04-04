@@ -3,7 +3,7 @@
 ## Quick note
 You can use the same instructions for both directories in this repository:
 - inbox: Uses Solidity version 0.4.26
-- inbox-updated: Uses Solidity version 0.8.11)
+- inbox-updated: Uses Solidity version 0.8.11
 
 ## Install the following
 - NodeJS (https://nodejs.org/en/download/)
